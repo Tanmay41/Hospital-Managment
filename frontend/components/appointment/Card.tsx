@@ -78,7 +78,11 @@ export default function AppointmentCard({ appointment, addCard }: AppointmentCar
             }, 500)
         }
 
-        const cardClass = "h-[225px] pastel-shadow" + appointment.emergency ? "bg-red-100" : ""
+        let cardClass = "h-[225px] pastel-shadow"
+
+        if (appointment.emergency) {
+            cardClass = cardClass +  " bg-red-100"
+        }
 
         return (
             <Card className={cardClass}>

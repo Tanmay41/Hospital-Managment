@@ -1,5 +1,5 @@
 import express from "express";
-import {getPatients, createPatient, deletePatient, editPatient} from "../controller/patient.js";
+import {getPatients, createPatient, deletePatient, editPatient, getOnePatient} from "../controller/patient.js";
 
 const patientRouter = express.Router();
 
@@ -8,15 +8,20 @@ patientRouter.get('/', async (req, res) => {
     res.status(200).json({success: true, patients: result});
 })
 
+patientRouter.post('/one', async (req, res) => {
+    const result = await getOnePatient(req.body.id)
+    res.status(200).json({success: true, patients: result});
+})
+
 patientRouter.post("/create", async (req, res) => {
-    const {name, mobile, address, priority} = req.body;
+    const {name, mobile, address, age, gender} = req.body;
 
     if (!name || !mobile) {
         return res.status(400).json({success: false, message: "Name and mobile are required."});
     }
 
     try {
-        const newPatient = {name, mobile, address, priority};
+        const newPatient = {name, mobile, address, age, gender};
         const result = await createPatient(newPatient);
 
         if (result.success) {
@@ -32,14 +37,14 @@ patientRouter.post("/create", async (req, res) => {
 });
 
 patientRouter.post("/edit", async (req, res) => {
-    const {id, name, mobile, address, priority} = req.body;
+    const {id, name, mobile, address, age, gender} = req.body;
 
     if (!id) {
         return res.status(400).json({success: false, message: "ID is required."});
     }
 
     try {
-        const updatedPatient = {id, name, mobile, address, priority};
+        const updatedPatient = {id, name, mobile, address, age, gender};
         const result = await editPatient(updatedPatient);
 
         if (result.success) {

@@ -6,7 +6,8 @@ const patientSchema = new Schema({
     name: {type: String, required: true},
     mobile: {type: String, required: true},
     address: {type: String},
-    priority: {type: Boolean, default: false}
+    age: {type: Number},
+    gender: {type: Boolean, required: true}
 })
 
 const Patient = mongoose.model('Patient', patientSchema);

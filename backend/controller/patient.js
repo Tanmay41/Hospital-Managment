@@ -10,6 +10,16 @@ export async function getPatients() {
     }
 }
 
+export async function getOnePatient(id) {
+    try {
+        const patient = await Patient.findById(id);
+        return {success: true, patient};
+    } catch (e) {
+        console.error("Error getting patients:", e);
+        return {success: false, message: e.message || "Error getting patients."};
+    }
+}
+
 export async function createPatient(data) {
     const patient = new Patient(data);
 
@@ -24,8 +34,8 @@ export async function createPatient(data) {
 }
 
 export async function editPatient(data) {
-    const {id, name, address, mobile, priority} = data;
-    const patientUpdatedData = {name, address, mobile, priority};
+    const {id, name, address, mobile, age, gender} = data;
+    const patientUpdatedData = {name, address, mobile, age, gender};
 
     try {
         const patientEdited = await Patient.findByIdAndUpdate(id, patientUpdatedData, {new: true});

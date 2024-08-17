@@ -35,6 +35,8 @@ export default function RootLayout({
                   <Link href={"/"} >
                       <House size={25}/>
                   </Link>
+                  <Link href={""}>
+                  </Link>
               </div>
               <ModeToggle/>
           </div>

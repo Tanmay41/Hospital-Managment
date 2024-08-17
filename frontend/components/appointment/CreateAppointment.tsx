@@ -36,7 +36,7 @@ import {Input} from "@/components/ui/input";
 import {Switch} from "@/components/ui/switch";
 import {toast} from "@/components/ui/use-toast";
 import {Textarea} from "@/components/ui/textarea";
-import {createAppointment} from "@/api/appointment";
+import {createAppointment} from "@/api/appointment";import { redirect } from 'next/navigation'
 
 const timeRegex = /^(0[9]|1[0-9]|20):(00|30)$/;
 
@@ -52,7 +52,7 @@ const formSchema = z.object({
 // @ts-ignore
 export default function CreateAppointment({ doctors, patients }) {
     const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema)
+        resolver: zodResolver(formSchema),
     });
 
     async function onSubmit() {

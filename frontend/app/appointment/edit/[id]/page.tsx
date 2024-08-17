@@ -1,4 +1,4 @@
-import EditAppointment from "@/components/EditAppointment";
+import EditAppointment from "@/components/appointment/EditAppointment";
 import {getDoctors} from "@/api/doctor";
 import {getPatients} from "@/api/patient";
 import {getOneAppointment} from "@/api/appointment";

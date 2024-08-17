@@ -1,10 +1,21 @@
 import express from "express";
 
 const doctorRouter = express.Router();
-import {getDoctors, createDoctor, deleteDoctor, editDoctor} from "../controller/doctor.js";
+import {getDoctors, createDoctor, deleteDoctor, editDoctor, getOneDoctor, getAllDoctors} from "../controller/doctor.js";
 
 doctorRouter.get("/", async (req, res) => {
     const result = await getDoctors()
+    res.status(200).json({success: true, doctors: result});
+})
+
+doctorRouter.post("/one", async (req, res) => {
+    const result = await getOneDoctor(req.body.doctorID)
+    res.status(200).json({success: true, doctors: result});
+})
+
+doctorRouter.get("/all", async (req, res) => {
+    const result = await getAllDoctors()
+    p
     res.status(200).json({success: true, doctors: result});
 })
 

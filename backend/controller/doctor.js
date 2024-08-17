@@ -2,6 +2,26 @@ import Doctor from "../models/doctor.js";
 
 export async function getDoctors() {
     try {
+        const doctors = await Doctor.find({available: true});
+        return {success: true, doctors};
+    } catch (e) {
+        console.error("Error getting doctors:", e);
+        return {success: false, message: e.message || "Error getting doctors."};
+    }
+}
+
+export async function getOneDoctor(id) {
+    try {
+        const doctors = await Doctor.findById(id);
+        return {success: true, doctors};
+    } catch (e) {
+        console.error("Error getting doctors:", e);
+        return {success: false, message: e.message || "Error getting doctors."};
+    }
+}
+
+export async function getAllDoctors() {
+    try {
         const doctors = await Doctor.find({});
         return {success: true, doctors};
     } catch (e) {
